@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Mixer</title>
+  <style>
+    #color-sample {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h2>Color Mixer</h2>
+  <form id="colorForm">
+    <label for="color1">Select Color 1:</label>
+    <select id="color1">
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <!-- Add more color options as needed -->
+    </select>
+    <br>
+    <label for="color2">Select Color 2:</label>
+    <select id="color2">
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <!-- Add more color options as needed -->
+    </select>
+  </form>
+  <br>
+  <button onclick="mixColors()">Mix Colors</button>
+  <div id="color-sample"></div>
+
+  <script>
+    // JavaScript for color mixing logic
+    function mixColors() {
+      var color1 = document.getElementById("color1").value;
+      var color2 = document.getElementById("color2").value;
+      var colorSample = document.getElementById("color-sample");
+      // Mapping of color names to RGB values
+      var colorsRGB = {
+        "red": [255, 0, 0],
+        "green": [0, 255, 0],
+        "blue": [0, 0, 255]
+        // Add more color mappings as needed
+      };
+      var rgb1 = colorsRGB[color1];
+      var rgb2 = colorsRGB[color2];
+      // Calculate average of RGB values
+      var avgRGB = [
+        Math.round((rgb1[0] + rgb2[0]) / 2),
+        Math.round((rgb1[1] + rgb2[1]) / 2),
+        Math.round((rgb1[2] + rgb2[2]) / 2)
+      ];
+      // Set the color sample display
+      colorSample.style.backgroundColor = 'rgb(' + avgRGB.join(',') + ')';
+    }
+  </script>
+</body>
+</html>
